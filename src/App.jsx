@@ -8,6 +8,7 @@ import { WalletProvider } from "./context/WalletContext";
 import Index from "./pages/Index";
 import Docs from "./pages/Docs";
 import Proposals from "./pages/Proposals";
+import SubmitProposal from "./pages/SubmitProposal";
 import Token from "./pages/Token";
 import NotFound from "./pages/NotFound";
 
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/docs" element={<Docs />} />
             <Route path="/proposals" element={<Proposals />} />
+            <Route path="/submit-proposal" element={<SubmitProposal />} />
             <Route path="/token" element={<Token />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
