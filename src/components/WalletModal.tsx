@@ -3,7 +3,7 @@ import React from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useWallet } from '@/context/WalletContext';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from '@/hooks/use-toast';
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -12,7 +12,6 @@ interface WalletModalProps {
 
 const WalletModal: React.FC<WalletModalProps> = ({ isOpen, onClose }) => {
   const { connectWallet } = useWallet();
-  const { toast } = useToast();
 
   const wallets = [
     { id: 'metamask', name: 'MetaMask' },

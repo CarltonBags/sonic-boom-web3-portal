@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Eye, Send } from "lucide-react";
+import { toast } from '@/hooks/use-toast';
 
 const ProposalModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();

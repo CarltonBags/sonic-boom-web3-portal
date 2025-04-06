@@ -8,11 +8,10 @@ import Treasury from '@/components/Treasury';
 import ActionButtons from '@/components/ActionButtons';
 import Footer from '@/components/Footer';
 import WalletModal from '@/components/WalletModal';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
-  const { toast } = useToast();
 
   const openWalletModal = () => {
     setIsWalletModalOpen(true);
@@ -22,7 +21,7 @@ const Index = () => {
     setIsWalletModalOpen(false);
   };
 
-  // Example of how to use the toast
+  // Example of how to use the toast (using imported toast function, not hook)
   const showToast = () => {
     toast({
       title: "Action performed",
