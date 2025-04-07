@@ -5,12 +5,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useWallet } from '@/context/WalletContext';
 import { toast } from '@/hooks/use-toast';
 
-interface WalletModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const WalletModal: React.FC<WalletModalProps> = ({ isOpen, onClose }) => {
+const WalletModal = ({ isOpen, onClose }) => {
   const { connectWallet } = useWallet();
 
   const wallets = [
@@ -20,7 +15,7 @@ const WalletModal: React.FC<WalletModalProps> = ({ isOpen, onClose }) => {
     { id: 'phantom', name: 'Phantom' },
   ];
 
-  const handleConnect = async (walletName: string) => {
+  const handleConnect = async (walletName) => {
     try {
       await connectWallet();
       toast({

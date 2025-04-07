@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const Treasury: React.FC = () => {
+const Treasury = () => {
   return (
     <section className="py-16">
       <div className="sonic-container">

@@ -2,7 +2,7 @@
 import React from 'react';
 import SonicButton from './SonicButton';
 
-const ActionButtons: React.FC = () => {
+const ActionButtons = () => {
   const actions = [
     {
       title: "Propose an Investment",

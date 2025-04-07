@@ -1,56 +1,51 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Eye, Send } from "lucide-react";
-import { toast } from '@/hooks/use-toast';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { X } from 'lucide-react';
+import SonicButton from './SonicButton';
 
 const ProposalModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
 
   const handleViewProposals = () => {
-    navigate('/proposals');
+    // Here you would implement the logic to view proposals
+    console.log("Viewing proposals");
     onClose();
   };
 
   const handleSubmitProposal = () => {
+    // Navigate to the submit proposal page
     navigate('/submit-proposal');
     onClose();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-sonic-primary border border-sonic-secondary text-sonic-secondary max-w-md">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center">Proposals</DialogTitle>
-          <DialogDescription className="text-center text-sonic-secondary opacity-80">
-            Choose an option below
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex flex-col gap-4 mt-4">
-          <Button 
+      <DialogContent className="bg-sonic-primary border border-sonic-secondary p-6 max-w-md mx-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">Proposals</h2>
+          <button onClick={onClose} className="text-sonic-secondary opacity-70 hover:opacity-100">
+            <X size={24} />
+          </button>
+        </div>
+        
+        <div className="space-y-6">
+          <p className="text-lg">What would you like to do?</p>
+          
+          <SonicButton 
             onClick={handleViewProposals}
-            className="flex items-center justify-center gap-2 border border-sonic-secondary hover:bg-sonic-secondary hover:text-sonic-primary transition-all"
-            variant="outline"
+            className="w-full"
           >
-            <Eye size={18} />
-            View Active & Past Proposals
-          </Button>
-          <Button 
+            View active and past proposals
+          </SonicButton>
+          
+          <SonicButton 
             onClick={handleSubmitProposal}
-            className="flex items-center justify-center gap-2 border border-sonic-secondary hover:bg-sonic-secondary hover:text-sonic-primary transition-all"
-            variant="outline"
+            className="w-full"
           >
-            <Send size={18} />
-            Submit New Proposal
-          </Button>
+            Submit new proposal
+          </SonicButton>
         </div>
       </DialogContent>
     </Dialog>

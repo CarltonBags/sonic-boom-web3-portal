@@ -2,7 +2,7 @@
 import React from 'react';
 import SonicLogo from './SonicLogo';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <footer className="border-t border-sonic-secondary py-12">
       <div className="sonic-container">

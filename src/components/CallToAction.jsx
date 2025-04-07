@@ -6,7 +6,7 @@ const CallToAction = () => {
   return (
     <section className="py-8">
       <div className="sonic-container">
-        <SonicButton className="w-full md:w-auto hover-scale">
+        <SonicButton className="w-full md:w-auto">
           Get involved now!
         </SonicButton>
       </div>

@@ -1,146 +1,124 @@
 
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Send } from "lucide-react";
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from '@/hooks/use-toast';
+import SonicButton from '@/components/SonicButton';
 
 const SubmitProposal = () => {
-  const navigate = useNavigate();
-  const form = useForm({
-    defaultValues: {
-      projectName: "",
-      projectInfo: "",
-      projectSocial: "",
-      investmentSize: "",
-      proposerName: "",
-    },
+  const [formData, setFormData] = useState({
+    projectName: '',
+    projectInfo: '',
+    projectContact: '',
+    investmentSize: '',
+    proposerName: ''
   });
 
-  const onSubmit = (data) => {
-    // This would typically connect to a backend to store the proposal
-    console.log("Proposal submitted:", data);
-    toast.success("Proposal submitted successfully!");
-    setTimeout(() => navigate('/proposals'), 1500);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Proposal submitted:', formData);
+    
+    toast({
+      title: "Proposal Submitted",
+      description: "Your investment proposal has been sent for review.",
+    });
+    
+    // Reset form after submission
+    setFormData({
+      projectName: '',
+      projectInfo: '',
+      projectContact: '',
+      investmentSize: '',
+      proposerName: ''
+    });
   };
 
   return (
     <div className="min-h-screen bg-sonic-primary pt-20">
       <Navbar />
       <main className="sonic-container py-16">
-        <div className="flex items-center mb-8">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/proposals')}
-            className="text-sonic-secondary hover:text-opacity-80 mr-4"
-          >
-            <ArrowLeft size={18} className="mr-1" />
-            Back
-          </Button>
-          <h1 className="text-4xl font-bold">Submit Proposal</h1>
-        </div>
-
-        <div className="max-w-2xl mx-auto bg-black/20 p-6 rounded-lg border border-sonic-secondary mt-8">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
+        <h1 className="text-4xl font-bold mb-8">Submit a Proposal</h1>
+        
+        <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
+          <div className="space-y-4">
+            <label className="block">
+              <span className="text-lg font-medium">Project Name</span>
+              <Input
+                type="text"
                 name="projectName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sonic-secondary">Project Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter project name" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                value={formData.projectName}
+                onChange={handleChange}
+                className="mt-1 block w-full border-sonic-secondary bg-transparent"
+                required
               />
-
-              <FormField
-                control={form.control}
+            </label>
+            
+            <label className="block">
+              <span className="text-lg font-medium">Project Information</span>
+              <Textarea
                 name="projectInfo"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sonic-secondary">Project Information</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        placeholder="Describe your project, its goals, and why it should be funded" 
-                        className="min-h-[150px]"
-                        {...field} 
-                        required 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                value={formData.projectInfo}
+                onChange={handleChange}
+                className="mt-1 block w-full border-sonic-secondary bg-transparent"
+                rows={5}
+                required
               />
-
-              <FormField
-                control={form.control}
-                name="projectSocial"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sonic-secondary">Project Website/Twitter</FormLabel>
-                    <FormControl>
-                      <Input placeholder="https://your-project.com or @TwitterHandle" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+            </label>
+            
+            <label className="block">
+              <span className="text-lg font-medium">Project Website/Twitter</span>
+              <Input
+                type="text"
+                name="projectContact"
+                value={formData.projectContact}
+                onChange={handleChange}
+                className="mt-1 block w-full border-sonic-secondary bg-transparent"
+                required
               />
-
-              <FormField
-                control={form.control}
+            </label>
+            
+            <label className="block">
+              <span className="text-lg font-medium">Proposed Investment Size</span>
+              <Input
+                type="text"
                 name="investmentSize"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sonic-secondary">Proposed Investment Size</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter amount in USD" type="number" min="0" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                value={formData.investmentSize}
+                onChange={handleChange}
+                className="mt-1 block w-full border-sonic-secondary bg-transparent"
+                placeholder="e.g., 100,000 $BOOM"
+                required
               />
-
-              <FormField
-                control={form.control}
+            </label>
+            
+            <label className="block">
+              <span className="text-lg font-medium">Name of Proposer</span>
+              <Input
+                type="text"
                 name="proposerName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sonic-secondary">Proposer Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your name" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                value={formData.proposerName}
+                onChange={handleChange}
+                className="mt-1 block w-full border-sonic-secondary bg-transparent"
+                required
               />
-
-              <Button 
-                type="submit" 
-                className="w-full border border-sonic-secondary bg-sonic-primary hover:bg-sonic-secondary hover:text-sonic-primary transition-all"
-              >
-                <Send size={18} className="mr-2" />
-                Submit Proposal
-              </Button>
-            </form>
-          </Form>
-        </div>
+            </label>
+          </div>
+          
+          <div className="pt-4">
+            <SonicButton type="submit" className="w-full md:w-auto">
+              Submit Proposal
+            </SonicButton>
+          </div>
+        </form>
       </main>
       <Footer />
     </div>

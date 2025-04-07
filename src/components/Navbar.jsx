@@ -6,7 +6,7 @@ import SonicLogo from './SonicLogo';
 import { useWallet } from '@/context/WalletContext';
 import WalletModal from './WalletModal';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const { isConnected, walletAddress, disconnectWallet } = useWallet();

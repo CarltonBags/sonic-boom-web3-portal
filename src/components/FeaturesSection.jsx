@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const FeatureBox: React.FC<{ title: string; items: string[] }> = ({ title, items }) => {
+const FeatureBox = ({ title, items }) => {
   return (
     <div className="border-box h-full">
       <h3 className="text-2xl md:text-3xl font-semibold mb-6">{title}</h3>
@@ -17,7 +17,7 @@ const FeatureBox: React.FC<{ title: string; items: string[] }> = ({ title, items
   );
 };
 
-const FeaturesSection: React.FC = () => {
+const FeaturesSection = () => {
   const features = [
     {
       title: "Investments",
