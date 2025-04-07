@@ -57,4 +57,21 @@
   .sonic-logo {
     filter: brightness(0) invert(1);
   }
+  
+  /* New styles for image-based design */
+  .feature-box {
+    @apply border border-sonic-secondary p-6 relative;
+  }
+  
+  .feature-logo {
+    @apply absolute -top-5 -right-5 w-10 h-10;
+  }
+  
+  .action-button {
+    @apply border border-sonic-secondary p-6 relative flex items-center justify-between w-full;
+  }
+  
+  .right-arrow {
+    @apply w-8 h-8;
+  }
 }

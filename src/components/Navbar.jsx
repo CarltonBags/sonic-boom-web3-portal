@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
 
         {/* Connect Button */}
-        <div className="hidden md:flex">
+        <div className="hidden md:block">
           <button 
             onClick={handleWalletClick}
             className="border border-sonic-secondary px-4 py-2 text-sonic-secondary hover:bg-sonic-secondary hover:text-sonic-primary transition-all duration-300"

@@ -1,10 +1,14 @@
 
 import React from 'react';
+import SonicLogo from './SonicLogo';
 
 const FeatureBox = ({ title, items }) => {
   return (
-    <div className="border-box h-full">
-      <h3 className="text-2xl md:text-3xl font-semibold mb-6">{title}</h3>
+    <div className="feature-box h-full">
+      <div className="feature-logo">
+        <SonicLogo size="xs" />
+      </div>
+      <h3 className="text-2xl font-semibold mb-6">{title}</h3>
       <ul className="space-y-4">
         {items.map((item, index) => (
           <li key={index} className="flex items-start">
@@ -48,7 +52,7 @@ const FeaturesSection = () => {
   return (
     <section className="py-16">
       <div className="sonic-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <FeatureBox 
               key={index} 

@@ -11,10 +11,10 @@ const SonicButton = ({
   return (
     <button 
       onClick={onClick} 
-      className={`sonic-button ${className}`}
+      className={`action-button ${className}`}
     >
       <span>{children}</span>
-      {showArrow && <ArrowRight className="ml-4" size={24} />}
+      {showArrow && <ArrowRight className="right-arrow" size={32} strokeWidth={2} />}
     </button>
   );
 };
